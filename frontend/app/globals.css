@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* Typography Overrides */
+.prose {
+  max-width: none;
+}
+
+.prose p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Chat Bubbles Transitions */
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chat-bubble-animate {
+  animation: bubble-in 0.3s ease-out forwards;
+}

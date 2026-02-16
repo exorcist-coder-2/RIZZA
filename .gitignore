@@ -1,0 +1,42 @@
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/pip-log.txt
+backend/pip-delete-this-directory.txt
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+backend/dist/
+backend/build/
+backend/*.egg-info/
+backend/.env
+backend/sql_app.db
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.production.local
+frontend/.vercel/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Artifacts (if not tracking)
+.gemini/
