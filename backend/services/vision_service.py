@@ -9,7 +9,7 @@ client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 class VisionService:
     def __init__(self):
-        self.model = "gpt-4o"
+        self.model = "gpt-4o-mini"
 
     async def analyze_chat_screenshot(self, image_bytes: bytes) -> dict:
         """
