@@ -73,11 +73,14 @@ export default function Home() {
       setMessages(prev => [...prev, assistantMsg]);
     } catch (err) {
       console.error('Chat error:', err);
+      // Show actual error to user for debugging
+      alert(`Connection Error: ${err instanceof Error ? err.message : String(err)}`);
+
       // Add error message
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
         role: 'assistant',
-        content: "Sorry, I lost my connection for a moment. Please try again!",
+        content: "Sorry, I lost my connection for a moment. Please try again! (Check console for details)",
         created_at: new Date().toISOString()
       }]);
     } finally {
