@@ -1,8 +1,7 @@
-'use client';
-
+import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ChatMessage as ChatMessageType } from '@/lib/api';
-import { Sparkles, User, Brain } from 'lucide-react';
+import { Sparkles, User, Brain, Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 interface ChatMessageProps {
@@ -33,14 +32,15 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
                 {/* Bubble */}
                 <div className={cn(
-                    "mx-3 px-4 py-3 rounded-2xl shadow-sm text-sm overflow-hidden",
+                    "mx-3 px-4 py-3 rounded-2xl shadow-sm text-sm overflow-hidden group relative",
                     isAI
-                        ? "bg-white border border-gray-100 text-gray-800 rounded-tl-none"
+                        ? "bg-white border border-gray-100 text-gray-800 rounded-tl-none pr-8"
                         : "bg-indigo-600 text-white rounded-tr-none"
                 )}>
                     {isAI ? (
                         <div className="prose prose-sm prose-p:leading-relaxed prose-pre:bg-gray-800 prose-pre:text-gray-100">
                             <ReactMarkdown>{message.content}</ReactMarkdown>
+                            <CopyButton text={message.content} />
                         </div>
                     ) : (
                         <div className="whitespace-pre-wrap leading-relaxed">
@@ -58,5 +58,29 @@ export function ChatMessage({ message }: ChatMessageProps) {
                 </div>
             </div>
         </div>
+    );
+}
+
+function CopyButton({ text }: { text: string }) {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy keys', err);
+        }
+    };
+
+    return (
+        <button
+            onClick={handleCopy}
+            className="absolute top-2 right-2 p-1.5 rounded-lg text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 opacity-0 group-hover:opacity-100 transition-all"
+            title="Copy to clipboard"
+        >
+            {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+        </button>
     );
 }
